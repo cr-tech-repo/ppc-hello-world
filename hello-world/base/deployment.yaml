@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    app: hello-world
+spec:
+  minReadySeconds: 3
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+#      annotations:
+#        sidecar.istio.io/inject: "true"
+#        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+      labels:
+        app: hello-world
+#      annotations:
+#        readiness.status.sidecar.istio.io/applicationPorts: "9081"
+#        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      volumes:
+        - name: index-html-volume
+          configMap:
+            name: hello-world-cfmap
+      containers:
+      - name: hello-world
+        image: caddy:2.7.5
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: index-html-volume
+            mountPath: /usr/share/caddy
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi

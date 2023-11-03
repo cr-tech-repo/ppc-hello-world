@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: hello-world-gateway
+spec:
+  selector:
+    app: hello-world
+    istio: ingressgateway # use the default Istio Ingress Gateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*" # wildcard host to match all inbound HTTP traffic
