@@ -1,0 +1,15 @@
+server:
+  http2: true
+  ssl:
+    front_end:
+      certificate:
+        - "@localcert.pem"
+        - "@keylocal.pem"
+    trust_certificates:
+  worker_threads: 100
+identity: 
+ oidc:
+   discovery_endpoint: "https://gps-iam-poc.verify.ibm.com/oidc/endpoint/default/.well-known/openid-configuration"
+   client_id: "d259b050-450a-49c3-95ff-bf33d4d77c03"
+   client_secret: "eiSY1wxWvp"
+version: '22.07'

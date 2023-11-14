@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iag-pub-instance
+  labels:
+    app: iag-pub-instance
+spec:
+  selector:
+    matchLabels:
+      app: iag-pub-instance
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: iag-pub-instance
+    spec:
+      serviceAccountName: ibm-application-gateway
+      volumes:
+        - name: iag-config-map
+          configMap:
+            name: iag-config-map
+      containers:
+        - name: iag-instance
+          image: icr.io/ibmappgateway/ibm-application-gateway:23.04.0
+          volumeMounts:
+            - name: iag-config-map
+              mountPath: /var/iag/config/
+          readinessProbe:
+            exec:
+              command:
+              - /sbin/health_check.sh
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+              - /sbin/health_check.sh
+            initialDelaySeconds: 120
+            periodSeconds: 20
+

@@ -1,0 +1,3 @@
+resources:
+- iag_pub_instance.yaml
+- iag_service_account.yaml
