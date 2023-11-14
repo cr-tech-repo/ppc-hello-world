@@ -1,0 +1,38 @@
+server:
+  http2: true
+  ssl:
+    front_end:
+      certificate:
+        - "@host.pem"
+        - "@key.pem"
+    trust_certificates:
+    - '@pdsrv_citizens_p12-CHAMPS_SHA256_Root.pem'
+    - '@pdsrv_citizens_p12-CN_DigiCert_Global_Root_CA_OU_www_digicert_com_O_DigiCert_Inc_C_US.pem'
+    - '@pdsrv_citizens_p12-CN_DigiCert_SHA2_Secure_Server_CA_O_DigiCert_Inc_C_US.pem'
+    - '@pdsrv_citizens_p12-CN_DigiCert_Secure_Site_ECC_CA-1_OU_www_digicert_com_O_DigiCert_Inc_C_US.pem'
+    - '@pdsrv_citizens_p12-CN_HCV084RTCAPI501.pem'
+    - '@pdsrv_citizens_p12-CN_Sectigo_RSA_Organization_Validation_Secure_Server_CA_O_Sectigo_Limited_L_Salford_ST_Greater_Manchester_C_GB.pem'
+    - '@pdsrv_citizens_p12-CN_USERTrust_RSA_Certification_Authority_O_The_USERTRUST_Network_L_Jersey_City_ST_New_Jersey_C_US.pem'
+    - '@pdsrv_citizens_p12-Comodo_Intermediate.pem'
+    - '@pdsrv_citizens_p12-Comodo_Root.pem'
+    - '@pdsrv_citizens_p12-StateEndCA1Root.pem'
+    - '@pdsrv_citizens_p12-StateEntCA1.pem'
+    - '@pdsrv_citizens_p12-StateZon149CA.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_1_Public_Primary_Certification_Authority.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_1_Public_Primary_Certification_Authority_-_G2.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_1_Public_Primary_Certification_Authority_-_G3.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_2_Public_Primary_Certification_Authority.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_2_Public_Primary_Certification_Authority_-_G2.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_2_Public_Primary_Certification_Authority_-_G3.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_3_Public_Primary_Certification_Authority.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_3_Public_Primary_Certification_Authority_-_G2.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_3_Public_Primary_Certification_Authority_-_G3.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem'
+    - '@pdsrv_citizens_p12-VeriSign_Class_4_Public_Primary_Certification_Authority_-_G2.pem'
+  worker_threads: 100
+identity: 
+ oidc:
+   discovery_endpoint: "https://gps-iam-poc.verify.ibm.com/oidc/endpoint/default/.well-known/openid-configuration"
+   client_id: "d259b050-450a-49c3-95ff-bf33d4d77c03"
+   client_secret: "eiSY1wxWvp"
+version: '22.07'

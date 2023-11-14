@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-world-cfmap
+  labels:
+    app: hello-world
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+      <body>
+        <p>Hello World!</p>
+      </body>
+    </html>

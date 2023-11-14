@@ -1,3 +1,4 @@
 # ./kustomization.yaml
 resources:
  - hello-world/overlays/dev
+ - IAG/overlays/dev
